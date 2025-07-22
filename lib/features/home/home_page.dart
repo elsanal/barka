@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
+import '../../core/widgets/product_card.dart';
 import '../product/product_detail.dart';
-
-
-
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -12,32 +10,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final products = List.generate(10, (index) => {
-      "name": "Product $index",
+      "name": "Sac a main de derniere generation $index",
       "price": 29.99 + index,
-      "image": "https://via.placeholder.com/150"
+      "image": "assets/images/img${index+1}.jpeg"
     });
 
     return Scaffold(
       appBar: AppBar(title: const Text("NeoShop")),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16),
+      body: MasonryGridView.builder(
+        padding: const EdgeInsets.all(5),
+        scrollDirection: Axis.vertical,
         itemCount: products.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 16),
+        gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2),
         itemBuilder: (context, index) {
-          final product = products[index];
-          return GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(
-                builder: (_) => ProductDetailPage(product: product))),
-            child: Column(
-              children: [
-                Image.asset('assets/images/hand_bag.jpg', height: 120),
-                const SizedBox(height: 8),
-                Text(product['name'] as String),
-                Text("\$${product['price']}", style: const TextStyle(fontWeight: FontWeight.bold)),
-              ],
-            ),
-          );
+          final product =  products[index];
+          return productCardView(context, index);
         },
       ),
     );

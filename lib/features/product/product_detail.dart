@@ -13,7 +13,7 @@ class ProductDetailPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.asset('assets/images/hand_bag.jpg', height: 120),
+          Image.asset('assets/images/img10.jpeg', height: 120),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
