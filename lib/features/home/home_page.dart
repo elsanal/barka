@@ -1,3 +1,4 @@
+import 'package:barka/features/home/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../../core/widgets/product_card.dart';
 import '../product/product_detail.dart';
@@ -17,16 +18,27 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text("NeoShop")),
-      body: MasonryGridView.builder(
-        padding: const EdgeInsets.all(5),
-        scrollDirection: Axis.vertical,
-        itemCount: products.length,
-        gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2),
-        itemBuilder: (context, index) {
-          final product =  products[index];
-          return productCardView(context, index);
-        },
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TopAppBarWithCategories(
+                categories: ['Bags', 'Shoes', 'T-Shirts', 'Electronics', 'Kids', 'Home', 'Sale']
+            ),
+            MasonryGridView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(5),
+              scrollDirection: Axis.vertical,
+              itemCount: products.length,
+              gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                final product =  products[index];
+                return productCardView(context, index);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

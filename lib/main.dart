@@ -1,3 +1,4 @@
+import 'package:barka/main_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/theme/app_theme.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         title: 'NeoShop',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-        home: const HomePage(),
+        home: const MainScreen(),
       )
     );
   }

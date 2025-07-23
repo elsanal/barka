@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 
   Widget productCardView(BuildContext context,int index){
+    var random = Random();
     return Card(
         elevation: 3,
         shape: RoundedRectangleBorder(
@@ -29,8 +32,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                 children: [
                   // Description Text
                   Text(
-                    "Jolie habit pour bébé. Toutes les tailles existent.",
-                    maxLines: 3,
+                    "Jolie habit pour bébé. Toutes les tailles existent. Ces habites sont des"
+                        "originaux et tres moins chers",
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 30.sp,
@@ -38,31 +42,50 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                     ),
                   ),
                   SizedBox(height: 8.h),
-
                   // Price Text
-                  Text.rich(
-                    TextSpan(
-                      text: "Price: ",
-                      style: TextStyle(fontSize: 30.sp),
-                      children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text.rich(
                         TextSpan(
-                          text: "\$8.99",
-                          style: TextStyle(
-                            fontSize: 30.sp,
-                            color: Colors.grey,
-                            decoration: TextDecoration.lineThrough,
-                          ),
+                          text: "Prix: ",
+                          style: TextStyle(fontSize: 25.sp),
+                          children: [
+                            TextSpan(
+                              text: (1000 + random.nextInt(5000)).toString(),
+                              style: TextStyle(
+                                fontSize: 30.sp,
+                                color: Colors.grey,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            ),
+                            TextSpan(
+                              text: " ${500 + random.nextInt(2000)} CFA",
+                              style: TextStyle(
+                                fontSize: 30.sp,
+                                color: Colors.redAccent,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
+                      Text.rich(
                         TextSpan(
-                          text: "  \$3.99",
-                          style: TextStyle(
-                            fontSize: 30.sp,
-                            color: Colors.redAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
+                          children: [
+                            TextSpan(
+                            text: "+${random.nextInt(2000)} vendu",
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              color: Colors.redAccent,
+                              fontWeight: FontWeight.bold,
+                            ))
+                          ]
+                        )
+                      )
+                    ],
                   ),
                 ],
               ),
