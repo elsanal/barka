@@ -16,7 +16,7 @@ class TopAppBarWithCategories extends StatelessWidget {
       children: [
         // 🔍 Combined Search + Icons
         Padding(
-          padding: EdgeInsets.all(12.w),
+          padding: EdgeInsets.all(30.w),
           child: TextField(
             decoration: InputDecoration(
               hintText: 'Search products...',
@@ -43,10 +43,14 @@ class TopAppBarWithCategories extends StatelessWidget {
               contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
               filled: true,
               fillColor: Colors.grey[200],
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.r),
-                borderSide: BorderSide.none,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30.r),
+                borderSide: BorderSide(color: Colors.black, width: 5.w, style: BorderStyle.solid),
               ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30.r),
+                borderSide: BorderSide(color: Colors.orange, width: 8.w, style: BorderStyle.solid),
+              )
             ),
           ),
         ),
@@ -58,13 +62,24 @@ class TopAppBarWithCategories extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
-            separatorBuilder: (_, __) => SizedBox(width: 8.w),
+            separatorBuilder: (_, __) => SizedBox(width: 10.w),
             itemBuilder: (context, index) {
               return Chip(
-                label: Text(categories[index]),
-                backgroundColor: Colors.grey[100],
-                side: BorderSide(color: Colors.grey[400]!),
-              );
+                label: Text(
+                  categories[index],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35.sp, // Adjusted to better fit a Chip
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                  overflow: TextOverflow.ellipsis, // Prevent overflow
+                ),
+                //labelPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                backgroundColor: Colors.grey[200],
+                padding: EdgeInsets.all(4),
+              )
+              ;
             },
           ),
         ),
