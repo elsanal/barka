@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TopAppBarWithCategories extends StatelessWidget {
+class TopAppBarWithCategories extends StatefulWidget {
   final List<String> categories;
 
   const TopAppBarWithCategories({
@@ -10,76 +10,98 @@ class TopAppBarWithCategories extends StatelessWidget {
   });
 
   @override
+  State<TopAppBarWithCategories> createState() => _TopAppBarWithCategoriesState();
+}
+
+class _TopAppBarWithCategoriesState extends State<TopAppBarWithCategories> {
+  int selectedIndex = -1;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 🔍 Combined Search + Icons
+        // 🔍 Search bar with image and scan icons
         Padding(
           padding: EdgeInsets.all(30.w),
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: 'Search products...',
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.image_search),
-                    tooltip: 'Search by image',
-                    onPressed: () {
-                      // TODO: implement image search
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.qr_code_scanner),
-                    tooltip: 'Scan object',
-                    onPressed: () {
-                      // TODO: implement scanning
-                    },
-                  ),
-                ],
+          child: GestureDetector(
+          onTap: () {
+          FocusScope.of(context).unfocus(); // Unfocus keyboard when tapping elsewhere
+          },
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search products...',
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.image_search),
+                      tooltip: 'Search by image',
+                      onPressed: () {
+                        // TODO: implement image search
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.qr_code_scanner),
+                      tooltip: 'Scan object',
+                      onPressed: () {
+                        // TODO: implement scanning
+                      },
+                    ),
+                  ],
+                ),
+                contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+                filled: true,
+                fillColor: Colors.grey[200],
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.r),
+                  borderSide: BorderSide(color: Colors.black, width: 3.5.w),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.r),
+                  borderSide: BorderSide(color: Colors.black, width: 4.5.w),
+                ),
+
               ),
-              contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
-              filled: true,
-              fillColor: Colors.grey[200],
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30.r),
-                borderSide: BorderSide(color: Colors.black, width: 5.w, style: BorderStyle.solid),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30.r),
-                borderSide: BorderSide(color: Colors.orange, width: 8.w, style: BorderStyle.solid),
-              )
             ),
           ),
         ),
-
-        // 📚 Horizontal categories list
+        // 📚 Horizontal category chips
         SizedBox(
           height: 50.h,
           child: ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
+            itemCount: widget.categories.length,
             separatorBuilder: (_, __) => SizedBox(width: 10.w),
             itemBuilder: (context, index) {
-              return Chip(
+              return ChoiceChip(
                 label: Text(
-                  categories[index],
-                  textAlign: TextAlign.center,
+                  widget.categories[index],
                   style: TextStyle(
-                    fontSize: 35.sp, // Adjusted to better fit a Chip
+                    color: selectedIndex == index ? Colors.white : Colors.black,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black,
                   ),
-                  overflow: TextOverflow.ellipsis, // Prevent overflow
                 ),
-                //labelPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                selected: selectedIndex == index,
+                onSelected: (bool selected) {
+                  setState(() {
+                    selectedIndex = selected ? index : selectedIndex;
+                  });
+                  print(widget.categories[index]);
+                },
+                selectedColor: Colors.deepOrange,
                 backgroundColor: Colors.grey[200],
-                padding: EdgeInsets.all(4),
-              )
-              ;
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  side: BorderSide(
+                    color: selectedIndex == index ? Colors.deepOrange : Colors.grey.shade400,
+                  ),
+                ),
+                // padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: EdgeInsets.only(bottom: 20.h),
+              );
             },
           ),
         ),
