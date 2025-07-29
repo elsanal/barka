@@ -33,7 +33,7 @@ class HomeBody extends StatelessWidget {
         final product = products[index];
         return GestureDetector(
           onTap: () {
-            context.goNamed(
+            context.pushNamed(
               'productDetails',
               pathParameters: {'id': product.id},
               extra: product,

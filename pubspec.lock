@@ -17,6 +17,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.2"
+  card_swiper:
+    dependency: "direct main"
+    description:
+      name: card_swiper
+      sha256: "21e52a144decbf0054e7cfed8bbe46fc89635e6c86b767eaccfe7d5aeba32528"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.1"
   characters:
     dependency: transitive
     description:
@@ -108,10 +116,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: f02fd7d2a4dc512fec615529824fdd217fecb3a3d3de68360293a551f21634b3
+      sha256: c489908a54ce2131f1d1b7cc631af9c1a06fac5ca7c449e959192089f9489431
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "14.8.1"
+    version: "16.0.0"
   leak_tracker:
     dependency: transitive
     description:
@@ -271,4 +279,4 @@ packages:
     version: "15.0.0"
 sdks:
   dart: ">=3.8.1 <4.0.0"
-  flutter: ">=3.22.0"
+  flutter: ">=3.27.0"
