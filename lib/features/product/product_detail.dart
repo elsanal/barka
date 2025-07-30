@@ -1,8 +1,11 @@
 import 'package:barka/features/custom_app_bar/sliver_app_bar.dart';
+import 'package:barka/features/product/logistic_refund.dart';
 import 'package:barka/features/product/product_info_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../object_classes/product_class.dart';
+import 'characteristics.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final Product product;
@@ -17,6 +20,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey[100],
+        bottomNavigationBar: BottomAppBar(),
         body: CustomScrollView(
           slivers: [
             //   Sliver app bar
@@ -28,8 +33,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               price2: "4200",
               price3: "4100",
             ),
+            SliverToBoxAdapter(child: Divider(height: 10.h)),
             //   Logictic & refund info
+            logisticRefundPolicy(),
+            SliverToBoxAdapter(child: Divider(height: 10.h)),
             //   Characteristics
+            productCharacteristicsPopUp(context),
+            SliverToBoxAdapter(child: Divider(height: 10.h)),
             //   Store infos
             //   Details photos of the products
           ],
