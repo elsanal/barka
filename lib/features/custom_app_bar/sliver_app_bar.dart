@@ -4,14 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget customAppBar() {
   return SliverAppBar(
-    floating: true,
+    floating: false,
     pinned: false,
-    snap: true,
+    snap: false,
     backgroundColor: Colors.white,
     elevation: 0.0,
-    expandedHeight: 920.h,
+    expandedHeight: 820.h,
     excludeHeaderSemantics: true,
-    leading: Container(),
     flexibleSpace: FlexibleSpaceBar(
       centerTitle: true,
       collapseMode: CollapseMode.parallax,
@@ -25,6 +24,8 @@ Widget appBarBackground() {
     itemCount: 10,
     scrollDirection: Axis.horizontal,
     loop: true,
+    viewportFraction: 0.8,
+    outer: true,
     control: SwiperControl(
       color: Colors.black,
       size: 60.w,

@@ -1,6 +1,8 @@
+import 'package:barka/features/bottom_bar/product_bottom_bar.dart';
 import 'package:barka/features/custom_app_bar/sliver_app_bar.dart';
 import 'package:barka/features/product/logistic_refund.dart';
 import 'package:barka/features/product/product_info_card.dart';
+import 'package:barka/features/product/product_photos_show.dart';
 import 'package:barka/features/product/similar_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,9 +22,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+
       child: Scaffold(
         backgroundColor: Colors.grey[100],
-        bottomNavigationBar: BottomAppBar(),
+        bottomNavigationBar: CustomBottomBar(
+          onShop: () => print('Go to Shop'),
+          onChat: () => print('Open Chat'),
+          onCartList: () => print('Open Cart List'),
+          onAddToCart: () => print('Add item to Cart'),
+          onProceedPayment: () => print('Proceed to Payment'),
+        ),
         body: CustomScrollView(
           slivers: [
             //   Sliver app bar
@@ -45,6 +54,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             similarProducts(context),
             SliverToBoxAdapter(child: Divider(height: 10.h)),
             //   Details photos of the products
+            productPhotosShow(context),
+            SliverToBoxAdapter(child: Divider(height: 10.h)),
           ],
         ),
       ),

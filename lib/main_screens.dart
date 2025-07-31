@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'features/home/home_page.dart';
+
 import 'features/cart/cart_page.dart';
 import 'features/category/category_page.dart';
 import 'features/chat/chat_page.dart';
+import 'features/home/home_page.dart';
 import 'features/profile/profile_page.dart';
 
 class MainScreen extends StatefulWidget {
@@ -55,7 +56,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(), // Disable swipe
+        onPageChanged: _onTabTapped,
+        // physics: const NeverScrollableScrollPhysics(), // Disable swipe
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
