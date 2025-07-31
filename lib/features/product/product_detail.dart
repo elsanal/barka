@@ -1,6 +1,7 @@
 import 'package:barka/features/custom_app_bar/sliver_app_bar.dart';
 import 'package:barka/features/product/logistic_refund.dart';
 import 'package:barka/features/product/product_info_card.dart';
+import 'package:barka/features/product/similar_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,6 +42,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             productCharacteristicsPopUp(context),
             SliverToBoxAdapter(child: Divider(height: 10.h)),
             //   Store infos
+            similarProducts(context),
+            SliverToBoxAdapter(child: Divider(height: 10.h)),
             //   Details photos of the products
           ],
         ),

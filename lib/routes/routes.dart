@@ -1,9 +1,9 @@
-import 'package:barka/main_screens.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/home/home_page.dart';
 import '../features/object_classes/product_class.dart';
 import '../features/product/product_detail.dart';
+import '../main_screens.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',

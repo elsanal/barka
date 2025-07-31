@@ -20,46 +20,101 @@ Widget productCharacteristicsPopUp(BuildContext context) {
   ];
 
   return SliverToBoxAdapter(
-    child: Container(
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            title: Text("Details du produit"),
-            trailing: Icon(Icons.arrow_forward_ios_sharp, size: 40.w),
-          ),
-          Wrap(
-            alignment: WrapAlignment.spaceBetween,
-            spacing: 12, // horizontal space between items
-            runSpacing: 8, // vertical space between lines
-            children: productCharacteristics.take(6).map((item) {
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.grey.shade300),
+    child: GestureDetector(
+      onTap: () => showModalBottomSheet(
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(23)),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+            padding: EdgeInsets.all(16.0),
+            height: 600,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Wrap(
+                  alignment: WrapAlignment.start,
+                  spacing: 12, // horizontal space between items
+                  runSpacing: 8, // vertical space between lines
+                  children: productCharacteristics.take(6).map((item) {
+                    return Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 6.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "${item['label']}: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text: item['value'],
+                              style: TextStyle(color: Colors.black87),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
-                child: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "${item['label']}: ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(
-                        text: item['value'],
-                        style: TextStyle(color: Colors.black87),
-                      ),
-                    ],
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Close"),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              title: Text("Plus de details du produit"),
+              trailing: Icon(Icons.arrow_forward_ios_sharp, size: 40.w),
+            ),
+            Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              spacing: 12, // horizontal space between items
+              runSpacing: 8, // vertical space between lines
+              children: productCharacteristics.take(6).map((item) {
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey.shade300),
                   ),
-                ),
-              );
-            }).toList(),
-          ),
-        ],
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "${item['label']}: ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: item['value'],
+                          style: TextStyle(color: Colors.black87),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        ),
       ),
     ),
   );
