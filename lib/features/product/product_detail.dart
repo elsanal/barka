@@ -22,7 +22,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-
       child: Scaffold(
         backgroundColor: Colors.grey[100],
         bottomNavigationBar: CustomBottomBar(
@@ -45,7 +44,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             ),
             SliverToBoxAdapter(child: Divider(height: 10.h)),
             //   Logictic & refund info
-            logisticRefundPolicy(),
+            logisticRefundPolicy(context),
             SliverToBoxAdapter(child: Divider(height: 10.h)),
             //   Characteristics
             productCharacteristicsPopUp(context),
