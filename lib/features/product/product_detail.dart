@@ -6,6 +6,7 @@ import 'package:barka/features/product/product_photos_show.dart';
 import 'package:barka/features/product/similar_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../object_classes/product_class.dart';
 import 'characteristics.dart';
@@ -29,7 +30,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           onChat: () => print('Open Chat'),
           onCartList: () => print('Open Cart List'),
           onAddToCart: () => print('Add item to Cart'),
-          onProceedPayment: () => print('Proceed to Payment'),
+          onProceedPayment: () => {
+            context.pushNamed(
+              'articleSelection',
+              pathParameters: {'id': '23784'},
+              // extra: product,
+            ),
+          },
         ),
         body: CustomScrollView(
           slivers: [
