@@ -21,7 +21,7 @@ Widget customAppBar() {
 
 Widget appBarBackground() {
   return Swiper(
-    itemCount: 10,
+    itemCount: 7,
     scrollDirection: Axis.horizontal,
     loop: true,
     viewportFraction: 0.8,
@@ -40,7 +40,7 @@ Widget appBarBackground() {
     //pagination: swiperPagination(),
     itemBuilder: (BuildContext context, int index) {
       return Image.asset(
-        "assets/images/img${index + 1}.jpeg",
+        "assets/images/img${index + 3}.jpeg",
         fit: BoxFit.fill,
         height: 1180.h,
         width: 1180.w,

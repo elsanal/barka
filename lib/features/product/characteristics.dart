@@ -37,7 +37,7 @@ Widget productCharacteristicsPopUp(BuildContext context) {
                   alignment: WrapAlignment.start,
                   spacing: 12, // horizontal space between items
                   runSpacing: 8, // vertical space between lines
-                  children: productCharacteristics.take(6).map((item) {
+                  children: productCharacteristics.map((item) {
                     return Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 8.0,

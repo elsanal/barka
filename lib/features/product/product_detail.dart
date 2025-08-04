@@ -1,14 +1,14 @@
 import 'package:barka/features/bottom_bar/product_bottom_bar.dart';
-import 'package:barka/features/custom_app_bar/sliver_app_bar.dart';
 import 'package:barka/features/product/logistic_refund.dart';
 import 'package:barka/features/product/product_info_card.dart';
 import 'package:barka/features/product/product_photos_show.dart';
 import 'package:barka/features/product/similar_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
+import '../custom_app_bar/sliver_app_bar.dart';
 import '../object_classes/product_class.dart';
+import '../payment/articles_selection.dart';
 import 'characteristics.dart';
 
 class ProductDetailPage extends StatefulWidget {
@@ -30,13 +30,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           onChat: () => print('Open Chat'),
           onCartList: () => print('Open Cart List'),
           onAddToCart: () => print('Add item to Cart'),
-          onProceedPayment: () => {
-            context.pushNamed(
-              'articleSelection',
-              pathParameters: {'id': '23784'},
-              // extra: product,
-            ),
-          },
+          onProceedPayment: () => {showItemSelection(context)},
         ),
         body: CustomScrollView(
           slivers: [

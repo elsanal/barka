@@ -1,4 +1,3 @@
-import 'package:barka/features/payment/articles_selection.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/home/home_page.dart';
@@ -21,14 +20,6 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final product = state.extra as Product;
         return ProductDetailPage(product: product);
-      },
-    ),
-    GoRoute(
-      path: '/article/selection/:id',
-      name: 'articleSelection',
-      builder: (context, state) {
-        //final product = state.extra as Product;
-        return ArticlesSelection();
       },
     ),
   ],

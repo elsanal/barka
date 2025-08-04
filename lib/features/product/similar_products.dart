@@ -7,12 +7,12 @@ import '../object_classes/product_class.dart';
 
 Widget similarProducts(BuildContext context) {
   final List<Product> products = List.generate(
-    9,
+    7,
     (index) => Product(
-      id: 'p$index',
+      id: '$index',
       name: 'Sac à main de dernière génération $index',
       price: 29.99 + index,
-      imageUrl: 'assets/images/img${index + 1}.jpeg',
+      imageUrl: 'assets/images/img${index + 3}.jpeg',
     ),
   );
 
@@ -55,7 +55,7 @@ Widget similarProducts(BuildContext context) {
                       extra: product,
                     );
                   },
-                  child: productCardViewSimple(context, index),
+                  child: productCardViewSimple(context, index + 3),
                 );
               },
             ),

@@ -11,12 +11,12 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Product> products = List.generate(
-      10,
+      7,
       (index) => Product(
         id: 'p$index',
         name: 'Sac à main de dernière génération $index',
         price: 29.99 + index,
-        imageUrl: 'assets/images/img${index + 1}.jpeg',
+        imageUrl: 'assets/images/img${index + 3}.jpeg',
       ),
     );
 

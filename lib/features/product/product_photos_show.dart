@@ -14,7 +14,7 @@ Widget productPhotosShow(BuildContext context) {
             child: AspectRatio(
               aspectRatio: 1, // square
               child: Image.asset(
-                'assets/images/img${1 + index}.jpeg',
+                'assets/images/img${3 + index}.jpeg',
                 fit: BoxFit.fill,
               ),
             ),
