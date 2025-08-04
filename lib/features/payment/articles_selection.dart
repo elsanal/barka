@@ -1,3 +1,4 @@
+import 'package:barka/features/payment/payment_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -62,45 +63,213 @@ Future showItemSelection(BuildContext context) {
             // SizedBox(height: 8.h),
             Divider(height: 5),
 
-            // ────── Scrollable Selection Grid ──────
+            // ────── Scrollable Selection Grid + Quantity Controls ──────
             Expanded(
               child: Container(
-                color: Colors.grey[200],
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: 10.w,
-                  mainAxisSpacing: 10.h,
-                  children: List.generate(8, (index) {
-                    return GestureDetector(
-                      onTap: () {
-                        // Optionally toggle selection
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.r),
-                          border: Border.all(color: Colors.grey[300]!),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withValues(alpha: 0.1),
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.r),
-                          child: Image.asset(
-                            "assets/images/img${index + 3}.jpeg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                color: Colors.grey[100],
+                child: ListView(
+                  // padding: EdgeInsets.symmetric(vertical: 12.h),
+                  children: [
+                    // ── Image Grid ──
+                    Text(
+                      "Choix de couleur",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.sp,
                       ),
-                    );
-                  }),
+                    ),
+                    GridView.count(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: 10.w,
+                      mainAxisSpacing: 10.h,
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      children: List.generate(8, (index) {
+                        return GestureDetector(
+                          onTap: () {
+                            // Handle selection logic
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.r),
+                              border: Border.all(color: Colors.grey[300]!),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.05),
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10.r),
+                              child: Image.asset(
+                                "assets/images/img${index + 3}.jpeg",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+
+                    SizedBox(height: 8.h),
+
+                    // ── Product Quantity Row ──
+                    Text(
+                      "Quantite",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.sp,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(12.w),
+                      // margin: EdgeInsets.symmetric(horizontal: 8.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12.r),
+                        border: Border.all(color: Colors.grey[300]!),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.05),
+                            blurRadius: 4,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // ── Product Info ──
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Produit élégant",
+                                style: TextStyle(
+                                  fontSize: 40.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                "Prix unitaire: 2 000 FCFA",
+                                style: TextStyle(
+                                  fontSize: 40.sp,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          // ── Quantity Control ──
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  print("Decrease");
+                                },
+                                icon: Icon(
+                                  Icons.remove_circle_outline,
+                                  // size: 80.w,
+                                ),
+                                iconSize: 60.sp,
+                              ),
+                              Text(
+                                "30",
+                                style: TextStyle(
+                                  fontSize: 45.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  print("Increase");
+                                },
+                                icon: Icon(Icons.add_circle_outline),
+                                iconSize: 60.sp,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // ── Payment Method Selection ──
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 20.h,
+                        left: 12.w,
+                        right: 12.w,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Méthode de paiement",
+                            style: TextStyle(
+                              fontSize: 45.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(height: 12.h),
+                          Wrap(
+                            spacing: 12.w,
+                            runSpacing: 8.h,
+                            children: [
+                              buildPaymentOption("Orange Money", "orange"),
+                              buildPaymentOption("Moov Money", "moov"),
+                              buildPaymentOption("Telecel Money", "telecel"),
+                              buildPaymentOption("SankMoney", "sank"),
+                              buildPaymentOption("Wave", "wave"),
+                              buildPaymentOption("Bank Card", "card"),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // ── Logistic Choice Selection ──
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 24.h,
+                        left: 12.w,
+                        right: 12.w,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Choix logistique",
+                            style: TextStyle(
+                              fontSize: 45.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(height: 12.h),
+                          Column(
+                            children: [
+                              buildLogisticOption(
+                                "Par mer",
+                                "9 000 FCFA / m³",
+                                "sea",
+                              ),
+                              SizedBox(height: 10.h),
+                              buildLogisticOption(
+                                "Par cargo",
+                                "12 000 FCFA / kg",
+                                "cargo",
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-
             Divider(height: 0.0),
 
             // ────── Payment Summary Bar ──────
