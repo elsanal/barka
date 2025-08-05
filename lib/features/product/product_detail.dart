@@ -43,19 +43,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               price2: "4200",
               price3: "4100",
             ),
-            SliverToBoxAdapter(child: Divider(height: 10.h)),
+            SliverToBoxAdapter(child: Divider(height: 10.h, thickness: 5)),
             //   Logictic & refund info
             logisticRefundPolicy(context),
-            SliverToBoxAdapter(child: Divider(height: 10.h)),
+            SliverToBoxAdapter(child: Divider(height: 10.h, thickness: 5)),
             //   Characteristics
             productCharacteristicsPopUp(context),
-            SliverToBoxAdapter(child: Divider(height: 10.h)),
+            SliverToBoxAdapter(child: Divider(height: 10.h, thickness: 5)),
             //   Store infos
             similarProducts(context),
-            SliverToBoxAdapter(child: Divider(height: 10.h)),
+            SliverToBoxAdapter(child: Divider(height: 10.h, thickness: 5)),
             //   Details photos of the products
             productPhotosShow(context),
-            SliverToBoxAdapter(child: Divider(height: 10.h)),
+            SliverToBoxAdapter(child: Divider(height: 10.h, thickness: 5)),
           ],
         ),
       ),

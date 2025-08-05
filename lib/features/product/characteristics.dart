@@ -76,6 +76,7 @@ Widget productCharacteristicsPopUp(BuildContext context) {
       ),
       child: Container(
         color: Colors.white,
+        padding: EdgeInsets.only(bottom: 10.h, left: 20.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
