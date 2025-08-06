@@ -33,7 +33,7 @@ class CustomBottomBar extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              child: _coloredButton("Add", onAddToCart, Colors.orange),
+              child: _coloredButton("Add", onAddToCart, Colors.deepOrange),
             ),
           ),
           Expanded(

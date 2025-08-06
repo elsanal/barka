@@ -1,4 +1,5 @@
 import 'package:barka/features/bottom_bar/product_bottom_bar.dart';
+import 'package:barka/features/cart/add_to_card.dart';
 import 'package:barka/features/product/logistic_refund.dart';
 import 'package:barka/features/product/product_info_card.dart';
 import 'package:barka/features/product/product_photos_show.dart';
@@ -29,7 +30,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           onShop: () => print('Go to Shop'),
           onChat: () => print('Open Chat'),
           onCartList: () => print('Open Cart List'),
-          onAddToCart: () => print('Add item to Cart'),
+          onAddToCart: () => {showItemSelectionForCart(context)},
           onProceedPayment: () => {showItemSelection(context)},
         ),
         body: CustomScrollView(
