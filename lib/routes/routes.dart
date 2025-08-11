@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/chat/direct_chat.dart';
 import '../features/home/home_page.dart';
 import '../features/object_classes/product_class.dart';
 import '../features/product/product_detail.dart';
@@ -13,6 +14,11 @@ final GoRouter router = GoRouter(
       path: '/home',
       name: 'home',
       builder: (context, state) => HomePage(),
+    ),
+    GoRoute(
+      path: '/directMessagePage',
+      name: 'directMessage',
+      builder: (context, state) => DirectMessagePage(),
     ),
     GoRoute(
       path: '/product/:id',

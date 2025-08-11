@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     HomePage(),
     CartPage(),
     CategoryPage(),
-    ChatPage(),
+    ContactUsPage(),
     ProfilePage(),
   ];
 

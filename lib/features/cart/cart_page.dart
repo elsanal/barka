@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../object_classes/product_class.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -22,58 +25,43 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
+    final List<Product> products = List.generate(
+      7,
+      (index) => Product(
+        id: 'p$index',
+        name: 'Sac à main de dernière génération $index',
+        price: 29.99 + index,
+        imageUrl: 'assets/images/img${index + 3}.jpeg',
+      ),
+    );
+    return Scaffold(
+      appBar: AppBar(title: Text("Votre Panier")),
+      body: Padding(
         padding: EdgeInsets.all(8.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildCategoryChips(),
-            SizedBox(height: 16.h),
+            SizedBox(height: 8.h),
             Expanded(
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return _CartItemCard(index: index);
+                  final product = products[index];
+                  return GestureDetector(
+                    onTap: () {
+                      context.pushNamed(
+                        'productDetails',
+                        pathParameters: {'id': product.id},
+                        extra: product,
+                      );
+                    },
+                    child: _CartItemCard(index: index),
+                  );
                 },
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildCategoryChips() {
-    return SizedBox(
-      height: 50.h,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 12.w),
-        itemCount: categories.length,
-        separatorBuilder: (_, __) => SizedBox(width: 10.w),
-        itemBuilder: (context, index) {
-          final isSelected = selectedIndex == index;
-          return ChoiceChip(
-            label: Text(
-              categories[index],
-              style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            selected: isSelected,
-            onSelected: (_) => setState(() => selectedIndex = index),
-            selectedColor: Colors.deepOrange,
-            backgroundColor: Colors.grey[200],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.r),
-              side: BorderSide(
-                color: isSelected ? Colors.deepOrange : Colors.grey.shade400,
-              ),
-            ),
-          );
-        },
       ),
     );
   }
