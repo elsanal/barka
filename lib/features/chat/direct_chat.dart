@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 class DirectMessagePage extends StatefulWidget {
-  const DirectMessagePage({Key? key}) : super(key: key);
+  const DirectMessagePage({super.key});
 
   @override
   State<DirectMessagePage> createState() => _DirectMessagePageState();

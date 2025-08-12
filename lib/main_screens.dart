@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'features/cart/cart_page.dart';
-import 'features/category/category_page.dart';
 import 'features/chat/chat_page.dart';
 import 'features/home/home_page.dart';
 import 'features/profile/profile_page.dart';
+import 'features/tracker/tracker_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,9 +19,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   final List<Widget> _pages = const [
     HomePage(),
     CartPage(),
-    CategoryPage(),
+    OrdersListPage(),
     ContactUsPage(),
-    ProfilePage(),
+    UserProfilePage(),
   ];
 
   late final PageController _pageController;
@@ -46,7 +46,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   final List<BottomNavigationBarItem> _navItems = const [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Acceuil'),
     BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Panier'),
-    BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Categorie'),
+    BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Orders'),
     BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
   ];

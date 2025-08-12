@@ -35,7 +35,7 @@ class _CartPageState extends State<CartPage> {
       ),
     );
     return Scaffold(
-      appBar: AppBar(title: Text("Votre Panier")),
+      appBar: AppBar(title: Text("Votre Panier"), centerTitle: true),
       body: Padding(
         padding: EdgeInsets.all(8.w),
         child: Column(
@@ -44,7 +44,7 @@ class _CartPageState extends State<CartPage> {
             SizedBox(height: 8.h),
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: products.length,
                 itemBuilder: (context, index) {
                   final product = products[index];
                   return GestureDetector(
