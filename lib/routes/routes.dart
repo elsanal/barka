@@ -1,3 +1,8 @@
+import 'package:barka/features/auth/login.dart';
+import 'package:barka/features/auth/register.dart';
+import 'package:barka/features/cart/cart_page.dart';
+import 'package:barka/features/chat/chat_page.dart';
+import 'package:barka/features/tracker/tracker_page.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/chat/direct_chat.dart';
@@ -11,9 +16,34 @@ final GoRouter router = GoRouter(
   routes: [
     GoRoute(path: '/', name: 'root', builder: (context, state) => MainScreen()),
     GoRoute(
+      path: '/login',
+      name: 'login',
+      builder: (context, state) => LoginPage(),
+    ),
+    GoRoute(
+      path: '/register',
+      name: 'register',
+      builder: (context, state) => RegisterPage(),
+    ),
+    GoRoute(
       path: '/home',
       name: 'home',
       builder: (context, state) => HomePage(),
+    ),
+    GoRoute(
+      path: '/cart',
+      name: 'cart',
+      builder: (context, state) => CartPage(),
+    ),
+    GoRoute(
+      path: '/orders',
+      name: 'orders',
+      builder: (context, state) => OrdersListPage(),
+    ),
+    GoRoute(
+      path: '/contact_us',
+      name: 'contact_us',
+      builder: (context, state) => ContactUsPage(),
     ),
     GoRoute(
       path: '/directMessagePage',

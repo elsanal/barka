@@ -6,6 +6,7 @@ import 'package:barka/features/product/product_photos_show.dart';
 import 'package:barka/features/product/similar_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../custom_app_bar/sliver_app_bar.dart';
 import '../object_classes/product_class.dart';
@@ -27,9 +28,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       child: Scaffold(
         backgroundColor: Colors.grey[100],
         bottomNavigationBar: CustomBottomBar(
-          onShop: () => print('Go to Shop'),
-          onChat: () => print('Open Chat'),
-          onCartList: () => print('Open Cart List'),
+          onShop: () => {},
+          onChat: () => {context.push('/contact_us')},
+          onCartList: () => {context.push('/cart')},
           onAddToCart: () => {showItemSelectionForCart(context)},
           onProceedPayment: () => {showItemSelection(context)},
         ),

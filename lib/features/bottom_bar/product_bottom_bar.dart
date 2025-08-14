@@ -27,7 +27,7 @@ class CustomBottomBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _bottomIconButton(Icons.storefront, "Shop", onShop),
+          _bottomIconButton(Icons.favorite_border, "Like", onShop),
           _bottomIconButton(Icons.chat, "Chat", onChat),
           _bottomIconButton(Icons.shopping_cart, "Cart", onCartList),
           Expanded(
